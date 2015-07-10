@@ -1,13 +1,13 @@
 <?php
 /*
- *Plugin Name: SEO Referrer Link Ping
- *Plugin URI: http://bluehatseo.com/blue-hat-technique-18-link-saturation-w-log-link-matching/
- *Description: Automatically ping all referrer links for an SEO boost.
- *Version: 1.0
- *Author: Equus Assets, Inc.
- *Author URI: http://equusassets.com/
- *License: GPLv2
- *License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Plugin Name: SEO Referrer Link Ping
+ * Plugin URI: http://bluehatseo.com/blue-hat-technique-18-link-saturation-w-log-link-matching/
+ * Description: Automatically ping all referrer links for an SEO boost.
+ * Version: 1.0.0
+ * Author: Equus Assets, Inc.
+ * Author URI: http://equusassets.com/
+ * License: GPLv2
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
