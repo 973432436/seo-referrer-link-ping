@@ -4,7 +4,7 @@ Donate link: http://equusassets.com/
 Tags: seo
 Requires at least: 3.0
 Tested up to: 4.2.2
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,9 @@ The plugin is smart enough to disregard referrer links from a few major search e
 == Screenshots ==
 
 == Changelog ==
+
+= 1.1.1 =
+* Fixed default setting issue when upgrading from older versions
 
 = 1.1.0 =
 * Added plugin options page with finer grain control of ping services so as not to overload pingomatic

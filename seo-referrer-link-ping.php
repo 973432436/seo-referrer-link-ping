@@ -3,7 +3,7 @@
  * Plugin Name: SEO Referrer Link Ping
  * Plugin URI: http://bluehatseo.com/blue-hat-technique-18-link-saturation-w-log-link-matching/
  * Description: Automatically ping all referrer links for an SEO boost.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Equus Assets
  * Author URI: http://equusassets.com/
  * License: GPLv2
@@ -16,6 +16,7 @@ class SEO_Referrer_Link_Ping_Plugin
 {
   static $instance = false;
   private $referrer = '';
+  private $version = 111;
 
   private function __construct() {
     add_action("parse_request", array($this, "seo_referrer_link_ping_capture"));
@@ -33,29 +34,26 @@ class SEO_Referrer_Link_Ping_Plugin
 
   function seo_referrer_link_ping_activate()
   {
-    if (!get_option('seo_referrer_link_ping_initialized')) {
-      add_option('seo_referrer_link_ping_initialized', true);
-  	  $seo_referrer_link_ping_strings['common']['chk_weblogscom'] = 1;
-  	  $seo_referrer_link_ping_strings['common']['chk_newsgator'] = 1;
-  	  $seo_referrer_link_ping_strings['common']['chk_blogdigger'] = 1;
-  	  $seo_referrer_link_ping_strings['common']['chk_topicexchange'] = 1;
-  	  $seo_referrer_link_ping_strings['common']['chk_skygrid'] = 1;
-  	  $seo_referrer_link_ping_strings['common']['chk_blogs'] = 1;
-  	  $seo_referrer_link_ping_strings['common']['chk_myyahoo'] = 1;
-  	  $seo_referrer_link_ping_strings['common']['chk_weblogalot'] = 1;
-  	  $seo_referrer_link_ping_strings['common']['chk_google'] = 1;
-  	  $seo_referrer_link_ping_strings['common']['chk_collecta'] = 1;
-  	  $seo_referrer_link_ping_strings['common']['chk_feedburner'] = 1;
-  	  $seo_referrer_link_ping_strings['common']['chk_pubsubcom'] = 1;
-  	  $seo_referrer_link_ping_strings['common']['chk_newsisfree'] = 1;
-  	  $seo_referrer_link_ping_strings['common']['chk_tailrank'] = 1;
-  	  $seo_referrer_link_ping_strings['common']['chk_superfeedr'] = 1;
-  	  $seo_referrer_link_ping_strings['special']['chk_audioweblogs'] = 0;
-  	  $seo_referrer_link_ping_strings['special']['chk_rubhub']  = 0;
-  	  $seo_referrer_link_ping_strings['special']['chk_a2b'] = 0;
-  	  $seo_referrer_link_ping_strings['special']['chk_blogshares'] = 0;
-      add_option('seo_referrer_link_ping_strings', $seo_referrer_link_ping_strings);
-    }
+  	$seo_referrer_link_ping_strings['common']['chk_weblogscom'] = 1;
+  	$seo_referrer_link_ping_strings['common']['chk_newsgator'] = 1;
+  	$seo_referrer_link_ping_strings['common']['chk_blogdigger'] = 1;
+  	$seo_referrer_link_ping_strings['common']['chk_topicexchange'] = 1;
+  	$seo_referrer_link_ping_strings['common']['chk_skygrid'] = 1;
+  	$seo_referrer_link_ping_strings['common']['chk_blogs'] = 1;
+  	$seo_referrer_link_ping_strings['common']['chk_myyahoo'] = 1;
+  	$seo_referrer_link_ping_strings['common']['chk_weblogalot'] = 1;
+  	$seo_referrer_link_ping_strings['common']['chk_google'] = 1;
+  	$seo_referrer_link_ping_strings['common']['chk_collecta'] = 1;
+  	$seo_referrer_link_ping_strings['common']['chk_feedburner'] = 1;
+  	$seo_referrer_link_ping_strings['common']['chk_pubsubcom'] = 1;
+  	$seo_referrer_link_ping_strings['common']['chk_newsisfree'] = 1;
+  	$seo_referrer_link_ping_strings['common']['chk_tailrank'] = 1;
+  	$seo_referrer_link_ping_strings['common']['chk_superfeedr'] = 1;
+  	$seo_referrer_link_ping_strings['special']['chk_audioweblogs'] = 0;
+  	$seo_referrer_link_ping_strings['special']['chk_rubhub']  = 0;
+  	$seo_referrer_link_ping_strings['special']['chk_a2b'] = 0;
+  	$seo_referrer_link_ping_strings['special']['chk_blogshares'] = 0;
+    add_option('seo_referrer_link_ping_strings', $seo_referrer_link_ping_strings);
   }
 
   function seo_referrer_link_ping_not_mydomain()
@@ -105,6 +103,10 @@ class SEO_Referrer_Link_Ping_Plugin
   // Init plugin options
   public function seo_referrer_link_ping_init() {
   	register_setting( 'seo_referrer_link_ping_options', 'seo_referrer_link_ping_strings', array($this, 'seo_referrer_link_ping_validate' ));
+    if (get_option('seo_referrer_link_ping_version') < $this->version || !get_option('seo_referrer_link_ping_version')) {
+      update_option('seo_referrer_link_ping_version', $this->version);
+      $this->seo_referrer_link_ping_activate();
+    }
   }
   
   // Add menu page
